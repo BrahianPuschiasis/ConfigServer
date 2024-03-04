@@ -8,7 +8,7 @@ spring:
     gateway:
       mvc:
         routes:
-          - id: courseRoute
+          - id: catalogRoute
             uri: lb://catalog-service/
             predicates:
               - Path=/catalog/**
