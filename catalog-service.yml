@@ -10,12 +10,6 @@ spring:
       probability: 1.0
 
 
-  rabbitmq:
-    username: guest
-    password: guest
-    host: localhost
-    port: 5672
-
 eureka:
   client:
     register-with-eureka: true
