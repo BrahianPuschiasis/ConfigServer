@@ -12,10 +12,15 @@ spring:
   application:
     name: catalog-service
   zipkin:
-    base-url: http://localhost:9411/
+  base-url: http://localhost:9411/
+  ui:
+    query:
+      enabled: true
   sleuth:
-    sampler:
-      probability: 1.0
+  propagation:
+    type: BAGGAGE
+  sampler:
+    probability: 1.0
   rabbitmq:
     listener:
       simple:
