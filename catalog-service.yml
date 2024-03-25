@@ -8,6 +8,21 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
+  rabbitmq:
+    listener:
+      simple:
+        default-requeue-rejected: false
+    binding:
+      listener:
+        simple:
+          queues:
+            - name: ${queue.movie.name}
+            - name: ${queue.serie.name}
+    queues:
+      - name: ${queue.movie.name}
+        durable: true
+      - name: ${queue.serie.name}
+        durable: true
 
 eureka:
   client:
@@ -22,43 +37,3 @@ eureka:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
-
-spring:
-  rabbitmq:
-    listener:
-      simple:
-        default-requeue-rejected: false 
-
-# Configuración para el listener de movie-service
-spring:
-  rabbitmq:
-    listener:
-      simple:
-        acknowledge-mode: manual
-        retry:
-          enabled: false
-    binding:
-      listener:
-        simple:
-          queues:
-            - name: ${queue.movie.name}
-    queues:
-      - name: ${queue.movie.name}
-        durable: true
-
-# Configuración para el listener de serie-service
-spring:
-  rabbitmq:
-    listener:
-      simple:
-        acknowledge-mode: manual
-        retry:
-          enabled: false
-    binding:
-      listener:
-        simple:
-          queues:
-            - name: ${queue.serie.name}
-    queues:
-      - name: ${queue.serie.name}
-        durable: true
