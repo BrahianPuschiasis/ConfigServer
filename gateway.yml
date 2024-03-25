@@ -1,6 +1,6 @@
 server:
   port: 8080
-#  vamos a agregar las configuraciones para armar el ruteo
+
 spring:
   application:
     name: gateway
@@ -13,7 +13,10 @@ spring:
             predicates:
               - Path=/catalog/**
 
-
+management:
+  tracing:
+    sampling:
+      probability: 1.0
 
 
 eureka:
