@@ -36,7 +36,25 @@ management:
     sampling:
       probability: 1.0
 
-
+resilience4j:
+    circuitbreaker:
+        instances:
+            catalog:
+                slidingWindowType: COUNT_BASED
+                slidingWindowSize: 5
+                failureRateThreshold: 50
+                waitDurationInOpenState: 15000
+                permittedNumberOfCallsInHalfOpenState: 3
+                registerHealthIndicator: true
+                allowHealthIndicatorToFail: false
+                automaticTransitionFromOpenToHalfOpenEnabled: true
+    retry:
+        instances:
+            catalog:
+                waitDuration: 1000
+                maxAttempts: 3
+                retryExceptions:
+                    - feign.FeignException$InternalServerError
 
 eureka:
   client:
