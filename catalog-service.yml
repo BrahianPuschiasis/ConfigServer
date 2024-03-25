@@ -24,6 +24,10 @@ spring:
         durable: true
       - name: ${queue.serie.name}
         durable: true
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
